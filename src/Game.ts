@@ -1,79 +1,37 @@
 import { INVALID_MOVE } from 'boardgame.io/core';
-import { selectBasicChef, voteStartingPlayer } from './moves/Intro';
+import { selectBasicChef } from './moves/Intro';
 import { bidIngredient, discardIngredient } from './moves/Bid';
 import {
   hireChefHidden, hireChefOpen, fireChef, revealChef,
   getLoan, requestTrade, activateAbility, makeDish,
   acceptTrade, rejectTrade, getIngredientFromDiscard, setIngredientForSubstitute
 } from './moves/Action';
+import { Player } from './entities/Player';
+import { Ingredient } from './entities/Ingredient';
+import { Chef } from './entities/Chef';
 
 export interface Game {
-  players: Player[]
-}
-
-export interface Player {
-  money: number,
-  ingredients: Ingredient[],
-  chefs: Chef[],
-  alreadyMadeDishes: Dish[]
-}
-
-export interface Ingredient {
-  name: string,
-  chineseName: string,
-  imagePath: string,
-  numberInDeck: number,
-  startingCount: number,
-  currentCount: number,
-  types: IngredientType[],
-  doesSpoil: boolean,
-  effect: () => any // how is this going to work...
-}
-
-export interface Chef {
-  name: string,
-  chineseName: string,
-  isBasic: boolean,
-  dishOne: Dish,
-  dishTwo?: Dish,
-  ability: Ability,
-  wage: number
-}
-
-export interface Dish {
-  name: string,
-  chineseName: string,
-  imagePath: string,
-  isBasic: boolean,
-  ingredients: Ingredient[],
-  reputationPoints?: number,
-  price: number
-}
-
-export interface Ability {
-  name: string,
-  imagePath: string,
-  cost: number,
-  effect: () => any // how is this going to work?
-}
-
-export enum IngredientType {
-  MEAT, VEGETABLE, STARCH, SAUCE, SPICE
+  players: Player[],
+  actionPhaseStartingPlayer: number,
+  chefsForHire: Chef[],
+  chefDeck: Chef[],
+  ingredientsToBid: Ingredient[],
+  ingredientsDeck: Ingredient[],
+  ingredientDiscard: Ingredient[]
 }
 
 export const TFM = {
-
   name: 'Taiwanese-Farmers-Market',
   minPlayers: 2,
   maxPlayers: 5,
 
   // TODO: set up initial state
   // TODO: create a model for the game state
-  setup: () => ({}),
+  setup: (numPlayers: number) => initGameState(numPlayers),
 
   phases: {
     intro: {
-      moves: { selectBasicChef, voteStartingPlayer },
+      moves: { selectBasicChef },
       start: true,
       // endIf: 
       next: 'bid'
@@ -117,4 +75,12 @@ export const TFM = {
       }
     }
   }
+}
+
+const initGameState = (numPlayers: number) => {
+
+}
+
+const initPlayers = (id: string) => {
+
 }
