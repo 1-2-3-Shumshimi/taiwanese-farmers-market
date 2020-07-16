@@ -12,3 +12,7 @@ export interface Player {
   alreadyMadeDishes: Dish[]
 }
 
+export interface PlayerInitData {
+  name: string
+}
+

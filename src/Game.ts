@@ -6,9 +6,10 @@ import {
   getLoan, requestTrade, activateAbility, makeDish,
   acceptTrade, rejectTrade, getIngredientFromDiscard, setIngredientForSubstitute
 } from './moves/Action';
-import { Player } from './entities/Player';
+import { Player, PlayerInitData } from './entities/Player';
 import { Ingredient } from './entities/Ingredient';
 import { Chef } from './entities/Chef';
+import { Ctx } from 'boardgame.io';
 
 export interface Game {
   players: Player[],
@@ -27,7 +28,7 @@ export const TFM = {
 
   // TODO: set up initial state
   // TODO: create a model for the game state
-  setup: (numPlayers: number) => initGameState(numPlayers),
+  setup: (ctx: Ctx) => initGameState(),
 
   phases: {
     intro: {
@@ -77,10 +78,31 @@ export const TFM = {
   }
 }
 
-const initGameState = (numPlayers: number) => {
-
+const initGameState = (): Game => {
+  const pInitArr = [{ name: 'Eleanor' }, { name: 'Chidi' }, { name: 'Tahani' }, { name: 'Jason' }];
+  return {
+    players: pInitArr.map((p, i) => initPlayer(p, i)),
+    actionPhaseStartingPlayer: 0,
+    chefsForHire: [],
+    chefDeck: initChefDeck(),
+    ingredientsToBid: [],
+    ingredientsDeck: initIngredientsDeck(),
+    ingredientDiscard: []
+  }
 }
 
-const initPlayers = (id: string) => {
-
+/**
+ * Returns a player object at initialization
+ * TODO: Build this out with more player data from the lobby
+ */
+const initPlayer = (pInitData: PlayerInitData, index: number): Player => {
+  return {
+    id: index,
+    name: pInitData.name,
+    money: 0,
+    reputationPoints: 0,
+    ingredients: [],
+    chefs: [],
+    alreadyMadeDishes: []
+  }
 }
