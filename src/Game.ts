@@ -1,4 +1,5 @@
 import { INVALID_MOVE } from 'boardgame.io/core';
+import _ from 'lodash';
 import { selectBasicChef } from './moves/Intro';
 import { bidIngredient, discardIngredient } from './moves/Bid';
 import {
@@ -7,6 +8,8 @@ import {
   acceptTrade, rejectTrade, getIngredientFromDiscard, setIngredientForSubstitute
 } from './moves/Action';
 import { Player, PlayerInitData } from './entities/Player';
+import { ChefData } from './data/ChefData';
+import { IngredientData } from './data/IngredientData'
 import { Ingredient } from './entities/Ingredient';
 import { Chef } from './entities/Chef';
 import { Ctx } from 'boardgame.io';
@@ -86,7 +89,7 @@ const initGameState = (): Game => {
     chefsForHire: [],
     chefDeck: initChefDeck(),
     ingredientsToBid: [],
-    ingredientsDeck: initIngredientsDeck(),
+    ingredientsDeck: initIngredientDeck(),
     ingredientDiscard: []
   }
 }
@@ -106,3 +109,11 @@ const initPlayer = (pInitData: PlayerInitData, index: number): Player => {
     alreadyMadeDishes: []
   }
 }
+
+const initChefDeck = () => {
+  return _.clone(Object.values(ChefData));
+};
+
+const initIngredientDeck = () => {
+  return _.clone(Object.values(IngredientData));
+};
