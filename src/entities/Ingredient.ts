@@ -7,10 +7,14 @@ export interface Ingredient {
   currentCount: number,
   types: IngredientType[],
   doesSpoil: boolean,
-  effect: () => any
+  effect?: () => any
 }
 
 export enum IngredientType {
   MEAT, VEGETABLE, STARCH, SAUCE, SPICE
+}
+
+export interface WildCardIngredient {
+  types: IngredientType[]
 }
 
