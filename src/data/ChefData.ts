@@ -4,6 +4,7 @@ import { AbilityData } from "./AbilityData";
 
 export const ChefData: { [name: string]: Chef } = {
   'Chef Chou': {
+    id: 0,
     name: 'Chef Chou',
     chineseName: '周',
     dishOne: DishData['Railway Mealbox'],
