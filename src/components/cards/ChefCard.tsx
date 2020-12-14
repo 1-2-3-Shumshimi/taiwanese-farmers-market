@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chef } from '../entities/Chef';
+import { Chef } from '../../entities/Chef';
 import { Card, CardContent, Typography } from '@material-ui/core';
 
 interface ChefCardProps {

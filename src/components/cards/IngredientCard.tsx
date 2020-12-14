@@ -1,5 +1,5 @@
 import React from 'react';
-import { Ingredient } from '../entities/Ingredient';
+import { Ingredient } from '../../entities/Ingredient';
 import { Card, CardContent, Typography } from '@material-ui/core';
 
 interface IngredientCardProps {
