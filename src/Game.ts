@@ -15,7 +15,7 @@ import { Chef } from './entities/Chef';
 import { Ctx } from 'boardgame.io';
 
 export interface Game {
-  players: Player[],
+  players: {[id: string]: Player},
   actionPhaseStartingPlayer: number,
   chefsForHire: Chef[],
   chefDeck: Chef[],
@@ -31,7 +31,7 @@ export const TFM = {
 
   // TODO: set up initial state
   // TODO: create a model for the game state
-  setup: (ctx: Ctx) => initGameState(),
+  setup: (ctx: Ctx) => initGameState(ctx),
 
   phases: {
     intro: {
@@ -81,10 +81,11 @@ export const TFM = {
   }
 }
 
-const initGameState = (): Game => {
+const initGameState = (ctx: Ctx): Game => {
+  console.log('calling initGameState');
   const pInitArr = [{ name: 'Eleanor' }, { name: 'Chidi' }, { name: 'Tahani' }, { name: 'Jason' }];
   return {
-    players: pInitArr.map((p, i) => initPlayer(p, i)),
+    players: initPlayers(ctx, pInitArr),
     actionPhaseStartingPlayer: 0,
     chefsForHire: [],
     chefDeck: initChefDeck(),
@@ -98,16 +99,20 @@ const initGameState = (): Game => {
  * Returns a player object at initialization
  * TODO: Build this out with more player data from the lobby
  */
-const initPlayer = (pInitData: PlayerInitData, index: number): Player => {
-  return {
-    id: index,
-    name: pInitData.name,
-    money: 0,
-    reputationPoints: 0,
-    ingredients: [],
-    chefs: [],
-    alreadyMadeDishes: []
-  }
+const initPlayers = (ctx: Ctx, pInitDataArr: PlayerInitData[]): { [id: string]: Player } => {
+  const players: {[id: string]: Player} = {}
+  pInitDataArr.forEach((pInitData, index) => {
+    players[`${index}`] = {
+      id: index,
+      name: pInitData.name,
+      money: 0,
+      reputationPoints: 0,
+      ingredients: [],
+      chefs: [],
+      alreadyMadeDishes: []
+    };
+  });
+  return players;
 }
 
 const initChefDeck = () => {
@@ -115,5 +120,11 @@ const initChefDeck = () => {
 };
 
 const initIngredientDeck = () => {
-  return _.clone(Object.values(IngredientData));
+  const ingredientDeck: Ingredient[] = [];
+  Object.values(IngredientData).forEach((ingredient) => {
+    for (let i = 0; i < ingredient.numberInDeck; ++i) {
+      ingredientDeck.push(_.clone(ingredient));
+    }
+  });
+  return _.shuffle(ingredientDeck);
 };

@@ -11,7 +11,7 @@ export interface Ingredient {
 }
 
 export enum IngredientType {
-  MEAT, VEGETABLE, STARCH, SAUCE, SPICE
+  MEAT, VEGETABLE, STARCH, CONDIMENT, SPICE
 }
 
 export interface WildCardIngredient {

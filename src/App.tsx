@@ -4,7 +4,9 @@ import { Board } from './Board';
 
 const App = Client({
   game: TFM,
-  board: Board
+  board: Board,
+  // TODO: pass via lobby
+  numPlayers: 4
 });
 
 export default App;
