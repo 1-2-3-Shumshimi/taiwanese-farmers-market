@@ -1,6 +1,7 @@
 import React from 'react';
 import { BoardProps } from 'boardgame.io';
 import { Game } from './Game';
+import { IntroPhase } from './components/containers/IntroPhase';
 
 export const Board = (props: BoardProps<Game>) => {
 
@@ -8,7 +9,7 @@ export const Board = (props: BoardProps<Game>) => {
 
   switch (props.ctx.phase) {
     case 'intro': {
-      return <div>We are in the intro phase</div>
+      return <IntroPhase {...props} />
     }
     case 'bid': {
       return <div>Let us bid!</div>

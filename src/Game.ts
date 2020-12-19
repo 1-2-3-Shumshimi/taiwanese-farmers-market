@@ -8,7 +8,7 @@ import {
   acceptTrade, rejectTrade, getIngredientFromDiscard, setIngredientForSubstitute
 } from './moves/Action';
 import { Player, PlayerInitData } from './entities/Player';
-import { ChefData } from './data/ChefData';
+import { BasicChefData, ChefData } from './data/ChefData';
 import { IngredientData } from './data/IngredientData'
 import { Ingredient } from './entities/Ingredient';
 import { Chef } from './entities/Chef';
@@ -19,6 +19,7 @@ export interface Game {
   actionPhaseStartingPlayer: number,
   chefsForHire: Chef[],
   chefDeck: Chef[],
+  basicChefDeck: Chef[],
   ingredientsToBid: Ingredient[],
   ingredientsDeck: Ingredient[],
   ingredientDiscard: Ingredient[]
@@ -89,6 +90,7 @@ const initGameState = (ctx: Ctx): Game => {
     actionPhaseStartingPlayer: 0,
     chefsForHire: [],
     chefDeck: initChefDeck(),
+    basicChefDeck: initBasicChefDeck(),
     ingredientsToBid: [],
     ingredientsDeck: initIngredientDeck(),
     ingredientDiscard: []
@@ -116,7 +118,11 @@ const initPlayers = (ctx: Ctx, pInitDataArr: PlayerInitData[]): { [id: string]: 
 }
 
 const initChefDeck = () => {
-  return _.clone(Object.values(ChefData));
+  return _.shuffle(_.clone(Object.values(ChefData)));
+};
+
+const initBasicChefDeck = () => {
+  return _.shuffle(_.clone(Object.values(BasicChefData)));
 };
 
 const initIngredientDeck = () => {
