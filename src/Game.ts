@@ -13,13 +13,13 @@ import { IngredientData } from './data/IngredientData'
 import { Ingredient } from './entities/Ingredient';
 import { Chef } from './entities/Chef';
 import { Ctx } from 'boardgame.io';
+import { drawCards } from './utils/Functions';
 
 export interface Game {
   players: {[id: string]: Player},
   actionPhaseStartingPlayer: number,
   chefsForHire: Chef[],
   chefDeck: Chef[],
-  basicChefDeck: Chef[],
   ingredientsToBid: Ingredient[],
   ingredientsDeck: Ingredient[],
   ingredientDiscard: Ingredient[]
@@ -90,7 +90,6 @@ const initGameState = (ctx: Ctx): Game => {
     actionPhaseStartingPlayer: 0,
     chefsForHire: [],
     chefDeck: initChefDeck(),
-    basicChefDeck: initBasicChefDeck(),
     ingredientsToBid: [],
     ingredientsDeck: initIngredientDeck(),
     ingredientDiscard: []
@@ -102,6 +101,7 @@ const initGameState = (ctx: Ctx): Game => {
  * TODO: Build this out with more player data from the lobby
  */
 const initPlayers = (ctx: Ctx, pInitDataArr: PlayerInitData[]): { [id: string]: Player } => {
+  const basicChefDeck = initBasicChefDeck();
   const players: {[id: string]: Player} = {}
   pInitDataArr.forEach((pInitData, index) => {
     players[`${index}`] = {
@@ -111,6 +111,7 @@ const initPlayers = (ctx: Ctx, pInitDataArr: PlayerInitData[]): { [id: string]: 
       reputationPoints: 0,
       ingredients: [],
       chefs: [],
+      basicChefOptions: drawCards(basicChefDeck, 2),
       alreadyMadeDishes: []
     };
   });

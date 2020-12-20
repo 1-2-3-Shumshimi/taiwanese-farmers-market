@@ -9,6 +9,7 @@ export interface Player {
   reputationPoints: number,
   ingredients: Ingredient[],
   chefs: Chef[],
+  basicChefOptions: Chef[],
   alreadyMadeDishes: Dish[]
 }
 

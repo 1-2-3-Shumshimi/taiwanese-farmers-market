@@ -1,1 +1,3 @@
-export {}
+const pathToAssets = '/assets/';
+
+export { pathToAssets };

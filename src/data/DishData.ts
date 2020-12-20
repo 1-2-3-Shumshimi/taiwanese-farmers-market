@@ -6,7 +6,6 @@ export const DishData: { [name: string]: Dish } = {
   railway_mealbox: {
     name: 'Railway Mealbox',
     chineseName: '台鐵便當',
-    imagePath: '',
     isBasic: true,
     ingredients: [
       { types: [IngredientType.MEAT] },
@@ -18,7 +17,6 @@ export const DishData: { [name: string]: Dish } = {
   shabu_shabu: {
     name: 'Shabu Shabu',
     chineseName: '涮涮鍋',
-    imagePath: '',
     isBasic: true,
     ingredients: [
       { types: [IngredientType.MEAT] },
@@ -30,7 +28,6 @@ export const DishData: { [name: string]: Dish } = {
   meat_dumpling_soup: {
     name: 'Meat Dumpling Soup',
     chineseName: '肉羹',
-    imagePath: '',
     isBasic: true,
     ingredients: [
       { types: [IngredientType.MEAT] },
@@ -42,7 +39,6 @@ export const DishData: { [name: string]: Dish } = {
   steamed_rice_bowl_cake: {
     name: 'Steamed Rice Bowl Cake',
     chineseName: '碗粿',
-    imagePath: '',
     isBasic: true,
     ingredients: [
       { types: [IngredientType.MEAT] },
@@ -54,7 +50,6 @@ export const DishData: { [name: string]: Dish } = {
   hakka_style_stir_fry: {
     name: 'Hakka-Style Stir Fry',
     chineseName: '客家小炒',
-    imagePath: '',
     isBasic: true,
     ingredients: [
       { types: [IngredientType.MEAT] },

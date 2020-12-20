@@ -10,7 +10,8 @@ export const BasicChefData: { [name: string]: Chef } = {
     dishOne: DishData.railway_mealbox,
     isBasic: true,
     ability: AbilityData.exp_cooking_vegetable,
-    wage: 0
+    wage: 0,
+    imagePath: 'chef/chou.png'
   },
   hsiao: {
     id: 1,
@@ -19,7 +20,8 @@ export const BasicChefData: { [name: string]: Chef } = {
     dishOne: DishData.shabu_shabu,
     isBasic: true,
     ability: AbilityData.backup_condiment,
-    wage: 0
+    wage: 0,
+    imagePath: 'chef/hsiao.png'
   },
   hung: {
     id: 2,
@@ -28,7 +30,8 @@ export const BasicChefData: { [name: string]: Chef } = {
     dishOne: DishData.meat_dumpling_soup,
     isBasic: true,
     ability: AbilityData.backup_meat,
-    wage: 0
+    wage: 0,
+    imagePath: 'chef/hung.png'
   },
   lai: {
     id: 3,
@@ -37,7 +40,8 @@ export const BasicChefData: { [name: string]: Chef } = {
     dishOne: DishData.steamed_rice_bowl_cake,
     isBasic: true,
     ability: AbilityData.exp_cooking_condiment,
-    wage: 0
+    wage: 0,
+    imagePath: 'chef/lai.png'
   },
   liang: {
     id: 4,
@@ -46,7 +50,8 @@ export const BasicChefData: { [name: string]: Chef } = {
     dishOne: DishData.hakka_style_stir_fry,
     isBasic: true,
     ability: AbilityData.exp_cooking_meat,
-    wage: 0
+    wage: 0,
+    imagePath: 'chef/liang.png'
   }
 };
 

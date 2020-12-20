@@ -9,5 +9,6 @@ export interface Chef {
   dishOne: Dish,
   dishTwo?: Dish,
   ability: Ability,
-  wage: number
+  wage: number,
+  imagePath: string
 }
