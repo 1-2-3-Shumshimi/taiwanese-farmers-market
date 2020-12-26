@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BoardProps } from 'boardgame.io';
 import { Game } from '../../Game';
-import { Button, Container, Typography, Grid, Paper } from '@material-ui/core'
+import { Button, Container, Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { ChefCard } from '../cards/ChefCard';
 
@@ -29,6 +29,9 @@ export const IntroPhase = (props: BoardProps<Game>) => {
       setSelectedChef(chefId);
     }
   }
+  const onClickSelectButton = () => {
+    props.moves.selectBasicChef(selectedChef);
+  }
 
   return (
     <Container className={classes.root}>
@@ -36,7 +39,7 @@ export const IntroPhase = (props: BoardProps<Game>) => {
         Select your Basic Chef
       </Typography>
       {selectedChef !== null &&
-        <Button variant='contained' color='primary' className={classes.button}>
+        <Button variant='contained' color='primary' className={classes.button} onClick={onClickSelectButton}>
           Select
         </Button>
       }

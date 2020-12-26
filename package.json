@@ -2,6 +2,8 @@
   "name": "taiwanese-farmers-market",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "main": "./dist/Server",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/styles": "^4.11.2",
@@ -11,6 +13,7 @@
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "boardgame.io": "^0.39.14",
+    "esm": "^3.2.25",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -20,7 +23,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rimraf dist",
+    "build-server": "tsc",
+    "server-custom-setup": "node ./src/scripts/serverCustomSetup.js",
+    "serve": "npm-run-all clean server-custom-setup build-server --parallel watch:build watch:server --print-label",
+    "watch:build": "tsc --watch",
+    "watch:server": "nodemon -r esm ./dist/Server.js --watch ./dist"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +49,9 @@
   "devDependencies": {
     "@types/lodash": "^4.14.157",
     "@types/react": "^16.9.41",
-    "@types/react-dom": "^16.9.8"
+    "@types/react-dom": "^16.9.8",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   }
 }

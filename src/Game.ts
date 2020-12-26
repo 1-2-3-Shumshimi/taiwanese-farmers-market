@@ -1,4 +1,4 @@
-import { INVALID_MOVE } from 'boardgame.io/core';
+import { ActivePlayers } from 'boardgame.io/core';
 import _ from 'lodash';
 import { selectBasicChef } from './moves/Intro';
 import { bidIngredient, discardIngredient } from './moves/Bid';
@@ -37,6 +37,9 @@ export const TFM = {
   phases: {
     intro: {
       moves: { selectBasicChef },
+      turn: {
+        activePlayers: ActivePlayers.ALL_ONCE,
+      },
       start: true,
       // endIf: 
       next: 'bid'
