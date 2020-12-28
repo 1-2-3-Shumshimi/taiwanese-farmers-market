@@ -1,7 +1,7 @@
 import React from 'react';
 import { BoardProps } from 'boardgame.io';
 import { Game } from './Game';
-import { IntroPhase } from './components/containers/IntroPhase';
+import { IntroPhase } from './components/phases/IntroPhase';
 
 export const Board = (props: BoardProps<Game>) => {
 
