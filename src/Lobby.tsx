@@ -1,10 +1,21 @@
 import React from 'react';
 import { Login } from './components/lobby/Login';
+import { RoomList } from './components/lobby/RoomList';
+import { RoomWaiting } from './components/lobby/RoomWaiting';
+
+export interface Room {
+  gameID: string,
+  gameName: string,
+  players: {
+    id: number,
+    name: string
+  }[]
+}
 
 export interface LobbyScreenProps {
   errorMsg: string;
   gameComponents: { game: any, board: any }[];
-  rooms: any[];
+  rooms: Room[];
   phase: 'enter' | 'play' | 'list';
   playerName: string;
   runningGame: any | null;
@@ -20,12 +31,20 @@ export interface LobbyScreenProps {
 
 export const LobbyScreen = (props: LobbyScreenProps) => {
 
+  const getPlayerRoom = () => {
+    return props.rooms.find(r => r.players.find(p => p.name === props.playerName));
+  }
+
   switch (props.phase) {
     case 'enter': {
       return <Login {...props} />
     }
     case 'list': {
-      return <div>list</div>
+      const playerRoom = getPlayerRoom();
+      if (playerRoom) {
+        return <RoomWaiting {...props} gameID={playerRoom.gameID} />
+      }
+      return <RoomList {...props} />
     }
     case 'play': {
       return <div>play</div>

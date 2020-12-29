@@ -33,7 +33,7 @@ export const Login = (props: LobbyScreenProps) => {
       <form noValidate autoComplete="off" className={classes.form}>
         <TextField
           id="outlined-basic"
-          label="Name"
+          label="Player name"
           variant="outlined"
           onChange={onNameChange}
         />

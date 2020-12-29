@@ -30,8 +30,6 @@ export const TFM = {
   minPlayers: 2,
   maxPlayers: 5,
 
-  // TODO: set up initial state
-  // TODO: create a model for the game state
   setup: (ctx: Ctx) => initGameState(ctx),
 
   phases: {

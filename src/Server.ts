@@ -5,4 +5,9 @@ const server = Server({
   games: [TFM]
 });
 
-server.run(8000, () => console.log('Running server!'));
+const lobbyConfig = {
+  apiPort: 8080,
+  apiCallback: () => console.log('Running Lobby API on port 8080...'),
+};
+
+server.run({ port: 8000, lobbyConfig }, () => console.log('Running server!'));

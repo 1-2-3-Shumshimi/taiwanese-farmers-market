@@ -15,8 +15,8 @@ import { LobbyScreen, LobbyScreenProps } from './Lobby';
 // Write custom lobby UI and take more control of the lobby APIs
 // https://boardgame.io/documentation/#/api/Lobby - see the vanilla JS version
 export const App = () => <Lobby
-  gameServer={`https://${window.location.hostname}:8000`}
-  lobbyServer={`https://${window.location.hostname}:8000`}
+  gameServer={'http://localhost:8000'}
+  lobbyServer={'http://localhost:8080'}
   gameComponents={[{ game: TFM, board: Board }]}
   renderer={(props: LobbyScreenProps) => <LobbyScreen {...props} />}
 />
