@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     width: '100%',
     padding: 12,
     justifyContent: 'center',
-    display: 'flex',
     flexDirection: 'column'
   },
   container: {
@@ -15,17 +14,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     maxWidth: 720,
     backgroundColor: theme.palette.background.paper,
     paddingBottom: 12
-  },
-  form: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  input: {
-    marginRight: 12
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
   }
 }));
 
@@ -46,6 +34,17 @@ export const RoomWaiting = (props: RoomWaitingProps) => {
     );
   }
 
+  const getPlayerID = () => {
+    return `${room.players.find(p => p.name === props.playerName)?.id}`
+  }
+
+  const onClickStartGame = () => {
+    props.handleStartGame(
+      props.gameComponents[0].game.name,
+      { gameID: props.gameID, numPlayers: room.players.length, playerID: getPlayerID() }
+    );
+  }
+
   return (
     <Box className={classes.root}>
       <Typography variant='h4' gutterBottom>
@@ -60,6 +59,13 @@ export const RoomWaiting = (props: RoomWaitingProps) => {
           );
         })}
       </List>
+      <Button
+        variant='contained'
+        color='primary'
+        disabled={room.players.filter(p => p.name).length !== room.players.length}
+        onClick={onClickStartGame}>
+        Enter game
+      </Button>
     </Box>
   )
 }

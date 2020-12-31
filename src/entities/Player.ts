@@ -4,16 +4,11 @@ import { Dish } from "./Dish";
 
 export interface Player {
   id: number,
-  name: string,
   money: number,
   reputationPoints: number,
   ingredients: Ingredient[],
   chefs: Chef[],
   basicChefOptions: Chef[],
   alreadyMadeDishes: Dish[]
-}
-
-export interface PlayerInitData {
-  name: string
 }
 

@@ -7,7 +7,7 @@ import {
   getLoan, requestTrade, activateAbility, makeDish,
   acceptTrade, rejectTrade, getIngredientFromDiscard, setIngredientForSubstitute
 } from './moves/Action';
-import { Player, PlayerInitData } from './entities/Player';
+import { Player } from './entities/Player';
 import { BasicChefData, ChefData } from './data/ChefData';
 import { IngredientData } from './data/IngredientData'
 import { Ingredient } from './entities/Ingredient';
@@ -16,7 +16,7 @@ import { Ctx } from 'boardgame.io';
 import { drawCards } from './utils/Functions';
 
 export interface Game {
-  players: {[id: string]: Player},
+  players: { [id: string]: Player },
   actionPhaseStartingPlayer: number,
   chefsForHire: Chef[],
   chefDeck: Chef[],
@@ -85,9 +85,8 @@ export const TFM = {
 
 const initGameState = (ctx: Ctx): Game => {
   console.log('calling initGameState');
-  const pInitArr = [{ name: 'Eleanor' }, { name: 'Chidi' }, { name: 'Tahani' }, { name: 'Jason' }];
   return {
-    players: initPlayers(ctx, pInitArr),
+    players: initPlayers(ctx),
     actionPhaseStartingPlayer: 0,
     chefsForHire: [],
     chefDeck: initChefDeck(),
@@ -101,13 +100,12 @@ const initGameState = (ctx: Ctx): Game => {
  * Returns a player object at initialization
  * TODO: Build this out with more player data from the lobby
  */
-const initPlayers = (ctx: Ctx, pInitDataArr: PlayerInitData[]): { [id: string]: Player } => {
+const initPlayers = (ctx: Ctx): { [id: string]: Player } => {
   const basicChefDeck = initBasicChefDeck();
-  const players: {[id: string]: Player} = {}
-  pInitDataArr.forEach((pInitData, index) => {
-    players[`${index}`] = {
-      id: index,
-      name: pInitData.name,
+  const players: { [id: string]: Player } = {}
+  for (let i = 0; i < ctx.numPlayers; ++i) {
+    players[`${i}`] = {
+      id: i,
       money: 0,
       reputationPoints: 0,
       ingredients: [],
@@ -115,7 +113,7 @@ const initPlayers = (ctx: Ctx, pInitDataArr: PlayerInitData[]): { [id: string]: 
       basicChefOptions: drawCards(basicChefDeck, 2),
       alreadyMadeDishes: []
     };
-  });
+  }
   return players;
 }
 

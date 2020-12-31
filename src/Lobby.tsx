@@ -35,6 +35,8 @@ export const LobbyScreen = (props: LobbyScreenProps) => {
     return props.rooms.find(r => r.players.find(p => p.name === props.playerName));
   }
 
+  console.log(props);
+
   switch (props.phase) {
     case 'enter': {
       return <Login {...props} />
@@ -47,7 +49,16 @@ export const LobbyScreen = (props: LobbyScreenProps) => {
       return <RoomList {...props} />
     }
     case 'play': {
-      return <div>play</div>
+      const game = props.runningGame;
+      if (game) {
+        return (<props.runningGame.app
+          gameID={game.gameID}
+          playerID={game.playerID}
+          credentials={game.credentials}
+        />)
+      } else {
+        return (<div>Can't find your game!</div>)
+      }
     }
   }
 }

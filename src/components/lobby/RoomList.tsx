@@ -31,13 +31,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export const RoomList = (props: LobbyScreenProps) => {
 
-  console.log(props);
   const classes = useStyles();
   const [newRoomNumPlayers, setNewRoomNumPlayers] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onNewRoomNameChange = (e: React.ChangeEvent<{ value: unknown }>) => {
-    console.log(e);
     setNewRoomNumPlayers(e.target.value as string);
   }
 
@@ -54,7 +52,6 @@ export const RoomList = (props: LobbyScreenProps) => {
     return (
       <List className={classes.container}>
         {props.rooms.map((room) => {
-          console.log(room);
           return (
             <ListItem key={room.gameID} button onClick={(() => onClickRoom(room))}>
               <ListItemText primary={`${room.gameName}: ${room.gameID}`} secondary={`${numPlayersInRoom(room)}/${room.players.length}`} />

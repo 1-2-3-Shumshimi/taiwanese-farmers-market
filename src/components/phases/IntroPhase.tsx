@@ -4,6 +4,7 @@ import { Game } from '../../Game';
 import { Button, Container, Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { ChefCard } from '../cards/ChefCard';
+import { getPlayerID } from '../../utils/Functions';
 
 const useStyles = makeStyles({
   root: {
@@ -44,7 +45,7 @@ export const IntroPhase = (props: BoardProps<Game>) => {
         </Button>
       }
       <Grid container justify='center' spacing={4} direction='column'>
-        {props.G.players[props.ctx.currentPlayer].basicChefOptions.map((chef) => (
+        {props.G.players[getPlayerID(props)].basicChefOptions.map((chef) => (
           <Grid key={chef.id} item className={classes.gridItem}>
             <ChefCard
               data={chef}

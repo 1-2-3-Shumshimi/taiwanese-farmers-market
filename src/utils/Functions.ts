@@ -1,3 +1,5 @@
+import { BoardProps } from "boardgame.io";
+
 /**
  * Removes the specified number of cards from the beginning of the input array. Mutates the input array.
  * @param arr Deck that is being drawn from
@@ -11,4 +13,15 @@ const drawCards = (arr: any[], numCards = 1) => {
   return cardsDrawn;
 }
 
-export { drawCards }
+/**
+ * Wraps playerID retrieval and logs incorrect type (e.g. null)
+ */
+const getPlayerID = (props: BoardProps<any>) => {
+  if (props.playerID) {
+    return props.playerID;
+  }
+  console.error("playerID should not be null", props.playerID);
+  return '0';
+}
+
+export { drawCards, getPlayerID }
